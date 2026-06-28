@@ -1,5 +1,4 @@
 ---
-import CascadeSection from 'src/components/shared/CascadeSection.astro';
 import ParchmentCard from 'src/components/shared/ParchmentCard.astro';
 import GlowButton from 'src/components/shared/GlowButton.astro';
 import AlchemicalDivider from 'src/components/shared/AlchemicalDivider.astro';
@@ -9,7 +8,7 @@ import AlchemicalScatter from 'src/components/shared/AlchemicalScatter.astro';
 import GlasswareCollection from 'src/components/shared/GlasswareCollection.astro';
 ---
 
-<CascadeSection rotate="left">
+<section class="relative py-16">
   <div class="relative mx-auto max-w-2xl px-6">
     <FlankingDecor />
     <GlasswareCollection side="left" seed={4} />
@@ -40,4 +39,4 @@ import GlasswareCollection from 'src/components/shared/GlasswareCollection.astro
       </div>
     </ParchmentCard>
   </div>
-</CascadeSection>
+</section>

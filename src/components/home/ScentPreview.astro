@@ -1,6 +1,5 @@
 ---
 import fragrances from 'src/data/fragrances.json';
-import CascadeSection from 'src/components/shared/CascadeSection.astro';
 import ParchmentCard from 'src/components/shared/ParchmentCard.astro';
 import GlowButton from 'src/components/shared/GlowButton.astro';
 import AlchemicalDivider from 'src/components/shared/AlchemicalDivider.astro';
@@ -30,52 +29,82 @@ const tilts = ['left', 'right', 'left', 'right'] as const;
 
     <AlchemicalDivider variant="line" />
 
-    <div class="grid gap-8 md:grid-cols-2">
-      {featured.map((fragrance, i) => (
-        <CascadeSection rotate={i % 2 === 0 ? 'left' : 'right'}>
-          <ParchmentCard tilt={tilts[i]} class="h-full">
-            <div class="flex flex-col gap-4 h-full">
-              <div class="flex items-start justify-between">
-                <div>
-                  <h3 class="font-display text-2xl text-parchment">{fragrance.name}</h3>
-                  <p class="font-body text-sm italic text-amber/60">{fragrance.subtitle}</p>
-                </div>
-                <span class="rounded-full border border-amber/10 px-3 py-1 font-body text-[10px] tracking-wider text-parchment-dim/50 uppercase">
-                  {fragrance.category}
-                </span>
-              </div>
+    <!-- Horizontal scroll with arrows -->
+    <div class="relative group">
+      <!-- Left arrow -->
+      <button id="scroll-left" aria-label="Scroll left" class="absolute left-0 top-1/2 z-20 -translate-y-1/2 -translate-x-4 hidden sm:flex h-10 w-10 items-center justify-center rounded-full border border-amber/20 bg-charcoal/90 text-amber/60 transition-all hover:border-amber/50 hover:text-amber hover:bg-charcoal backdrop-blur-sm opacity-0 group-hover:opacity-100">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
 
-              <p class="text-sm leading-relaxed text-parchment-dim flex-grow">{fragrance.description}</p>
+      <!-- Right arrow -->
+      <button id="scroll-right" aria-label="Scroll right" class="absolute right-0 top-1/2 z-20 -translate-y-1/2 translate-x-4 hidden sm:flex h-10 w-10 items-center justify-center rounded-full border border-amber/20 bg-charcoal/90 text-amber/60 transition-all hover:border-amber/50 hover:text-amber hover:bg-charcoal backdrop-blur-sm opacity-0 group-hover:opacity-100">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
 
-              <div class="space-y-3 border-t border-amber/10 pt-4">
-                {(['top', 'heart', 'base'] as const).map(layer => (
-                  <div class="flex items-start gap-3">
-                    <span class="mt-0.5 shrink-0 font-body text-[10px] tracking-widest uppercase text-amber/40 w-10 text-right">
-                      {layer}
-                    </span>
-                    <div class="flex flex-wrap gap-1">
-                      {fragrance.notes[layer].map(note => (
-                        <span class="rounded-sm bg-amber/5 px-2 py-0.5 font-body text-xs text-parchment-dim/70">
-                          {note}
-                        </span>
-                      ))}
-                    </div>
+      <!-- Scroll container -->
+      <div id="elixir-scroll" class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 scrollbar-hide">
+        {featured.map((fragrance, i) => (
+          <div class="snap-start shrink-0 w-[85vw] max-w-[380px]">
+            <ParchmentCard tilt={tilts[i]} class="h-full">
+              <div class="flex flex-col gap-4 h-full">
+                <div class="flex items-start justify-between">
+                  <div>
+                    <h3 class="font-display text-2xl text-parchment">{fragrance.name}</h3>
+                    <p class="font-body text-sm italic text-amber/60">{fragrance.subtitle}</p>
                   </div>
-                ))}
-              </div>
-
-              <div class="flex flex-col gap-2 border-t border-amber/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p class="font-body text-xs text-parchment-dim/50"><span class="text-amber/40">Best for: </span>{fragrance.bestFor}</p>
+                  <span class="rounded-full border border-amber/10 px-3 py-1 font-body text-[10px] tracking-wider text-parchment-dim/50 uppercase">
+                    {fragrance.category}
+                  </span>
                 </div>
-                <GlowButton href="/consultation/" variant="ghost" size="sm">
-                  Inquire →
-                </GlowButton>
+
+                <p class="text-sm leading-relaxed text-parchment-dim flex-grow">{fragrance.description}</p>
+
+                <div class="space-y-3 border-t border-amber/10 pt-4">
+                  {(['top', 'heart', 'base'] as const).map(layer => (
+                    <div class="flex items-start gap-3">
+                      <span class="mt-0.5 shrink-0 font-body text-[10px] tracking-widest uppercase text-amber/40 w-10 text-right">
+                        {layer}
+                      </span>
+                      <div class="flex flex-wrap gap-1">
+                        {fragrance.notes[layer].map(note => (
+                          <span class="rounded-sm bg-amber/5 px-2 py-0.5 font-body text-xs text-parchment-dim/70">
+                            {note}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div class="flex flex-col gap-2 border-t border-amber/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p class="font-body text-xs text-parchment-dim/50"><span class="text-amber/40">Best for: </span>{fragrance.bestFor}</p>
+                  </div>
+                  <GlowButton href="/consultation/" variant="ghost" size="sm">
+                    Inquire →
+                  </GlowButton>
+                </div>
               </div>
-            </div>
-          </ParchmentCard>
-        </CascadeSection>
-      ))}
+            </ParchmentCard>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+
+<script>
+  const scroll = document.getElementById('elixir-scroll');
+  const leftBtn = document.getElementById('scroll-left');
+  const rightBtn = document.getElementById('scroll-right');
+  if (scroll && leftBtn && rightBtn) {
+    const cardWidth = 380 + 24; // card max-width + gap
+    leftBtn.addEventListener('click', () => scroll.scrollBy({ left: -cardWidth, behavior: 'smooth' }));
+    rightBtn.addEventListener('click', () => scroll.scrollBy({ left: cardWidth, behavior: 'smooth' }));
+  }
+</script>
