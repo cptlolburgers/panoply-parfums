@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/* ============================================
+   Panoply Parfums — Design Tokens & Theme
+   Dark Alchemist's Laboratory
+   ============================================ */
+
+@theme {
+  /* —— Core Palette —— */
+  --color-abyss: #0d0a08;
+  --color-charcoal: #1a1410;
+  --color-ember: #2a1f16;
+  --color-parchment: #e8dcc8;
+  --color-parchment-dim: #c4b89a;
+  --color-amber: #c9a96e;
+  --color-amber-glow: #d4a853;
+  --color-burgundy: #4a1520;
+  --color-burgundy-deep: #320f17;
+  --color-sage: #6b705c;
+  --color-sage-muted: #525745;
+  --color-gold: #b8943e;
+
+  /* —— Typography —— */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Lora", "Georgia", "Times New Roman", serif;
+
+  /* —— Spacing for cascade layout —— */
+  --spacing-section-gap: 6rem;
+  --spacing-cascade-offset: 2rem;
+
+  /* —— Shadows —— */
+  --shadow-glow: 0 0 40px 8px rgba(201, 169, 110, 0.12);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --shadow-deep: 0 8px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* —— Base Styles —— */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-abyss);
+  color: var(--color-parchment);
+  font-family: var(--font-body);
+}
+
+body {
+  background:
+    /* Faint gradient vignette */
+    radial-gradient(ellipse at 50% 30%, rgba(201, 169, 110, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse at 20% 80%, rgba(74, 21, 32, 0.05) 0%, transparent 50%),
+    /* Subtle repeating diamond tile */
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(201, 169, 110, 0.025) 40px,
+      rgba(201, 169, 110, 0.025) 41px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(201, 169, 110, 0.025) 40px,
+      rgba(201, 169, 110, 0.025) 41px
+    ),
+    /* Base color */
+    var(--color-abyss);
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* —— Texture Overlay —— */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* —— Selection —— */
+::selection {
+  background-color: var(--color-amber);
+  color: var(--color-abyss);
+}
+
+/* —— Scrollbar —— */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-abyss);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ember);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-amber);
+}
+
+/* —— Cascade Utilities —— */
+@utility cascade-left {
+  transform: rotate(-1.5deg) translateX(-1rem);
+}
+
+@utility cascade-right {
+  transform: rotate(1deg) translateX(1rem);
+}
+
+@utility cascade-overlap-up {
+  margin-top: calc(var(--spacing-cascade-offset) * -1);
+  position: relative;
+  z-index: 2;
+}
+
+@utility cascade-overlap-down {
+  margin-bottom: calc(var(--spacing-cascade-offset) * -1);
+  position: relative;
+  z-index: 1;
+}
+
+/* —— Parchment texture utility —— */
+@utility parchment {
+  background:
+    linear-gradient(135deg, var(--color-charcoal) 0%, var(--color-ember) 50%, var(--color-charcoal) 100%);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+}
+
+@utility parchment-light {
+  background:
+    linear-gradient(135deg, #2a2318 0%, #33291a 50%, #282012 100%);
+  border: 1px solid rgba(201, 169, 110, 0.2);
+}
+
+/* —— Glow ring —— */
+@utility glow-ring {
+  box-shadow: 0 0 30px 3px rgba(201, 169, 110, 0.08),
+              0 0 60px 1px rgba(201, 169, 110, 0.04);
+}
+
+/* —— Typography —— */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+h2 { font-size: clamp(1.75rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+
+/* —— Focus styles —— */
+*:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 2px;
+}
+
+/* —— Animations —— */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+@keyframes slow-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-flicker {
+  animation: flicker 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: slow-float 6s ease-in-out infinite;
+}

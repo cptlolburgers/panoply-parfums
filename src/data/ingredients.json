@@ -1,0 +1,42 @@
+[
+  {
+    "id": "dear-musk",
+    "name": "Deer Musk",
+    "latin": "Moschus",
+    "category": "animalic",
+    "description": "The alchemist's prized possession. Warm, leathery, intoxicatingly sensual — an animalic anchor no synthesis can replicate.",
+    "notes": ["animalic", "leathery", "warm", "powdery", "sensual"],
+    "sourcing": "Gathered from naturally shed pods of managed deer in the Altai Mountains. No harm, no hunt — only what the rutting season freely drops.",
+    "icon": "🦌"
+  },
+  {
+    "id": "oud",
+    "name": "Oud",
+    "latin": "Aquilaria agallocha",
+    "category": "woody",
+    "description": "Liquid darkness. Resin-rich heartwood from century-old Aquilaria, transformed by a rare mold into something transcendent — smoky, balsamic, ancient.",
+    "notes": ["smoky", "balsamic", "woody", "leather", "dried-fruit"],
+    "sourcing": "Wild-harvested in Southeast Asia from naturally infected trees. We partner with local communities who practice selective harvest — taking only what the forest offers.",
+    "icon": "🪵"
+  },
+  {
+    "id": "ambergris",
+    "name": "Ambergris",
+    "latin": "Physeter macrocephalus",
+    "category": "marine",
+    "description": "Floating gold. Aged for years upon the waves before washing ashore — salty, sweet, with an ethereal marine shimmer. The whales never know we exist.",
+    "notes": ["marine", "salty", "sweet", "earthy", "ethereal"],
+    "sourcing": "Beach-collected only. Each piece ethically gathered from shorelines after natural oceanic aging. CITES-compliant, whale-safe, ocean-gifted.",
+    "icon": "🐋"
+  },
+  {
+    "id": "delicate-florals",
+    "name": "Delicate Florals",
+    "latin": "Varia botanica",
+    "category": "floral",
+    "description": "The alchemist's garden. Jasmine plucked at dawn, Bulgarian rose otto from copper alembics, night-blooming tuberose — each petal treated as sacrament.",
+    "notes": ["jasmine", "rose", "tuberose", "iris", "orange-blossom"],
+    "sourcing": "Artisan growers in Grasse, Kannauj, and Bulgaria's Rose Valley. Hand-picked at peak bloom for maximum olfactory radiance.",
+    "icon": "🌸"
+  }
+]

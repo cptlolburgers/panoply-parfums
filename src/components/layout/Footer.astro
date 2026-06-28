@@ -1,0 +1,82 @@
+---
+// Footer — Patreon link, social, newsletter, copyright
+import siteConfig from 'src/data/site-config.json';
+import GlowButton from 'src/components/shared/GlowButton.astro';
+---
+
+<footer class="relative border-t border-amber/10 bg-abyss">
+  <div class="mx-auto max-w-7xl px-6 py-16">
+    <div class="grid gap-12 md:grid-cols-3">
+
+      <!-- Brand col -->
+      <div class="flex flex-col gap-4">
+        <a href="/" class="flex flex-col leading-none">
+          <span class="font-display text-xl tracking-[0.08em] text-parchment">PANOPLY</span>
+          <span class="font-body text-xs tracking-[0.25em] text-parchment-dim">PARFUMS</span>
+        </a>
+        <p class="max-w-xs text-sm leading-relaxed text-parchment-dim">
+          Artisan fragrances crafted with intention. Sustainably sourced ingredients, alchemical blends, personalized guidance.
+        </p>
+      </div>
+
+      <!-- Links col -->
+      <div class="flex flex-col gap-4">
+        <h4 class="font-display text-sm tracking-[0.12em] uppercase text-parchment">Navigate</h4>
+        <div class="flex flex-col gap-2">
+          <a href="/" class="text-sm text-parchment-dim transition-colors hover:text-amber">Home</a>
+          <a href="/about/" class="text-sm text-parchment-dim transition-colors hover:text-amber">About & Mission</a>
+          <a href="/consultation/" class="text-sm text-parchment-dim transition-colors hover:text-amber">Consultation & Contact</a>
+        </div>
+      </div>
+
+      <!-- Community col -->
+      <div class="flex flex-col gap-4">
+        <h4 class="font-display text-sm tracking-[0.12em] uppercase text-parchment">Community</h4>
+        <div class="flex flex-col gap-3">
+          <a
+            href={siteConfig.patreonUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm text-parchment-dim transition-colors hover:text-amber"
+          >
+            Patreon — Behind the Blends
+          </a>
+          {siteConfig.social.instagram && (
+            <a
+              href={siteConfig.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-parchment-dim transition-colors hover:text-amber"
+            >
+              Instagram
+            </a>
+          )}
+          {siteConfig.social.tiktok && (
+            <a
+              href={siteConfig.social.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-parchment-dim transition-colors hover:text-amber"
+            >
+              TikTok
+            </a>
+          )}
+        </div>
+        <GlowButton href={siteConfig.patreonUrl} variant="secondary" size="sm" class="mt-2 w-fit">
+          Support on Patreon
+        </GlowButton>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-12 flex flex-col gap-2 border-t border-amber/10 pt-8 sm:flex-row sm:justify-between">
+      <p class="text-xs text-parchment-dim/60">
+        &copy; {new Date().getFullYear()} Panoply Parfums. All rights reserved.
+      </p>
+      <p class="text-xs text-parchment-dim/40 italic">
+        Alchemy in every bottle.
+      </p>
+    </div>
+  </div>
+</footer>

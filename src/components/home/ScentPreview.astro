@@ -1,0 +1,81 @@
+---
+import fragrances from 'src/data/fragrances.json';
+import CascadeSection from 'src/components/shared/CascadeSection.astro';
+import ParchmentCard from 'src/components/shared/ParchmentCard.astro';
+import GlowButton from 'src/components/shared/GlowButton.astro';
+import AlchemicalDivider from 'src/components/shared/AlchemicalDivider.astro';
+import AlchemicalScatter from 'src/components/shared/AlchemicalScatter.astro';
+import FlankingDecor from 'src/components/shared/FlankingDecor.astro';
+import CobwebCorner from 'src/components/shared/CobwebCorner.astro';
+import LabFog from 'src/components/shared/LabFog.astro';
+import AlchemistCorner from 'src/components/shared/AlchemistCorner.astro';
+import BookshelfBackground from 'src/components/shared/BookshelfBackground.astro';
+
+const featured = fragrances.filter(f => f.featured);
+const tilts = ['left', 'right', 'left', 'right'] as const;
+---
+
+<section class="relative py-20 sm:py-28">
+  <BookshelfBackground variant="full" opacity={0.09} seed={5} />
+  <LabFog />
+  <AlchemicalScatter density="dense" />
+  <FlankingDecor />
+  <AlchemistCorner position="bottom-left" seed={3} />
+  <CobwebCorner position="bottom-left" />
+  <div class="relative z-10 mx-auto max-w-6xl px-6">
+    <div class="mb-14 text-center">
+      <span class="font-display text-xs tracking-[0.2em] uppercase text-amber/60">Rare Ingredients, Ethically Gathered</span>
+      <h2 class="mt-4 text-parchment">The Elixirs</h2>
+    </div>
+
+    <AlchemicalDivider variant="line" />
+
+    <div class="grid gap-8 md:grid-cols-2">
+      {featured.map((fragrance, i) => (
+        <CascadeSection rotate={i % 2 === 0 ? 'left' : 'right'}>
+          <ParchmentCard tilt={tilts[i]} class="h-full">
+            <div class="flex flex-col gap-4 h-full">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h3 class="font-display text-2xl text-parchment">{fragrance.name}</h3>
+                  <p class="font-body text-sm italic text-amber/60">{fragrance.subtitle}</p>
+                </div>
+                <span class="rounded-full border border-amber/10 px-3 py-1 font-body text-[10px] tracking-wider text-parchment-dim/50 uppercase">
+                  {fragrance.category}
+                </span>
+              </div>
+
+              <p class="text-sm leading-relaxed text-parchment-dim flex-grow">{fragrance.description}</p>
+
+              <div class="space-y-3 border-t border-amber/10 pt-4">
+                {(['top', 'heart', 'base'] as const).map(layer => (
+                  <div class="flex items-start gap-3">
+                    <span class="mt-0.5 shrink-0 font-body text-[10px] tracking-widest uppercase text-amber/40 w-10 text-right">
+                      {layer}
+                    </span>
+                    <div class="flex flex-wrap gap-1">
+                      {fragrance.notes[layer].map(note => (
+                        <span class="rounded-sm bg-amber/5 px-2 py-0.5 font-body text-xs text-parchment-dim/70">
+                          {note}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div class="flex flex-col gap-2 border-t border-amber/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p class="font-body text-xs text-parchment-dim/50"><span class="text-amber/40">Best for: </span>{fragrance.bestFor}</p>
+                </div>
+                <GlowButton href="/consultation/" variant="ghost" size="sm">
+                  Inquire →
+                </GlowButton>
+              </div>
+            </div>
+          </ParchmentCard>
+        </CascadeSection>
+      ))}
+    </div>
+  </div>
+</section>

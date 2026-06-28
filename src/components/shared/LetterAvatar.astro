@@ -1,0 +1,16 @@
+---
+// LetterAvatar — testimonial initial in a styled circle
+export interface Props {
+  letter: string;
+  class?: string;
+}
+
+const { letter, class: extraClass = '' } = Astro.props;
+---
+
+<div
+  class={`flex h-12 w-12 items-center justify-center rounded-full border border-amber/30 bg-ember font-display text-lg text-amber ${extraClass}`}
+  aria-hidden="true"
+>
+  {letter.toUpperCase()}
+</div>

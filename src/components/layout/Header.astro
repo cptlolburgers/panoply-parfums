@@ -1,0 +1,77 @@
+---
+// Header — Brand mark + navigation
+import siteConfig from 'src/data/site-config.json';
+
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Consultation', href: '/consultation/' },
+];
+---
+
+<header class="relative z-50 w-full">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+    <!-- Brand mark -->
+    <a href="/" class="group flex flex-col leading-none" aria-label="Panoply Parfums — Home">
+      <span class="font-display text-2xl tracking-[0.08em] text-parchment transition-colors group-hover:text-amber sm:text-3xl">
+        PANOPLY
+      </span>
+      <span class="font-body text-xs tracking-[0.25em] text-parchment-dim transition-colors group-hover:text-amber/70 sm:text-sm">
+        PARFUMS
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden items-center gap-10 md:flex" aria-label="Main navigation">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class="font-display text-sm tracking-[0.12em] uppercase text-parchment-dim transition-all duration-300 hover:text-amber"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Mobile nav trigger -->
+    <button
+      id="mobile-nav-toggle"
+      class="group flex flex-col gap-1.5 md:hidden"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+    >
+      <span class="block h-px w-6 bg-parchment-dim transition-all duration-300 group-aria-expanded:translate-y-[5px] group-aria-expanded:rotate-45" />
+      <span class="block h-px w-5 bg-parchment-dim transition-all duration-300 group-aria-expanded:opacity-0" />
+      <span class="block h-px w-4 bg-parchment-dim transition-all duration-300 group-aria-expanded:w-6 group-aria-expanded:-translate-y-[5px] group-aria-expanded:-rotate-45" />
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <nav
+    id="mobile-nav"
+    class="hidden flex-col gap-4 border-t border-amber/10 bg-abyss/95 px-6 py-6 backdrop-blur-md md:hidden"
+    aria-label="Mobile navigation"
+  >
+    {navLinks.map(link => (
+      <a
+        href={link.href}
+        class="font-display text-lg tracking-[0.1em] uppercase text-parchment-dim transition-colors hover:text-amber"
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-nav-toggle');
+  const nav = document.getElementById('mobile-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('hidden', expanded);
+      nav.classList.toggle('flex', !expanded);
+    });
+  }
+</script>

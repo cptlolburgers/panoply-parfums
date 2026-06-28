@@ -1,0 +1,112 @@
+---
+// AlchemistCorner — cauldron, candles, stones, spider in a corner vignette
+export interface Props {
+  position?: 'bottom-left' | 'bottom-right';
+  seed?: number;
+}
+
+const { position = 'bottom-left', seed = 1 } = Astro.props;
+
+function rng(s: number) {
+  let state = s;
+  return () => { state = (state * 16807 + 0) % 2147483647; return state / 2147483647; };
+}
+const rand = rng(seed);
+
+const posClass = position === 'bottom-left'
+  ? 'bottom-0 left-0'
+  : 'bottom-0 right-0 scale-x-[-1]';
+
+const hasSpider = rand() > 0.4;
+const spiderX = 60 + rand() * 100;
+const spiderY = 20 + rand() * 30;
+---
+
+<div
+  class={`pointer-events-none absolute ${posClass} h-64 w-80 sm:h-80 sm:w-96 opacity-[0.35]`}
+  aria-hidden="true"
+>
+  <svg viewBox="0 0 300 250" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-full">
+    <!-- Cauldron -->
+    <g transform="translate(60, 180)">
+      <!-- Fire underneath -->
+      <ellipse cx="25" cy="25" rx="22" ry="10" fill="#d4a853" opacity="0.12" />
+      <ellipse cx="25" cy="23" rx="16" ry="7" fill="#c9a96e" opacity="0.1" />
+      <path d="M18 28Q22 15 25 18Q28 15 32 28" fill="#d4a853" opacity="0.08" />
+
+      <!-- Cauldron body -->
+      <path d="M0 0Q5 -30 25 -35Q45 -30 50 0Z" fill="#1a1410" stroke="#3d2b1a" stroke-width="1.5" opacity="0.9" />
+      <ellipse cx="25" cy="0" rx="25" ry="7" fill="#2a1f16" stroke="#3d2b1a" stroke-width="1" />
+
+      <!-- Rim -->
+      <ellipse cx="25" cy="-35" rx="22" ry="6" fill="#1a1410" stroke="#c9a96e" stroke-width="0.8" opacity="0.6" />
+
+      <!-- Bubbles -->
+      <circle cx="18" cy="-25" r="3" fill="none" stroke="#c9a96e" stroke-width="0.5" opacity="0.4" />
+      <circle cx="30" cy="-28" r="2" fill="none" stroke="#c9a96e" stroke-width="0.4" opacity="0.35" />
+      <circle cx="22" cy="-18" r="2.5" fill="none" stroke="#c9a96e" stroke-width="0.5" opacity="0.3" />
+
+      <!-- Handles -->
+      <path d="M0 -20Q-12 -25 -10 -10" fill="none" stroke="#3d2b1a" stroke-width="2.5" />
+      <path d="M50 -20Q62 -25 60 -10" fill="none" stroke="#3d2b1a" stroke-width="2.5" />
+    </g>
+
+    <!-- Philosopher's stone (glowing orb on a small pedestal) -->
+    <g transform="translate(180, 195)">
+      <rect x="-8" y="-5" width="16" height="10" rx="1" fill="#1a1410" stroke="#3d2b1a" stroke-width="0.5" />
+      <circle cx="0" cy="-8" r="7" fill="#4a1520" opacity="0.6" />
+      <circle cx="0" cy="-8" r="5" fill="#c9a96e" opacity="0.3" />
+      <circle cx="0" cy="-8" r="3" fill="#d4a853" opacity="0.4" />
+      <circle cx="2" cy="-10" r="1.5" fill="white" opacity="0.2" />
+      {/* Glow */}
+      <circle cx="0" cy="-8" r="14" fill="#d4a853" opacity="0.06" />
+      <circle cx="0" cy="-8" r="22" fill="#c9a96e" opacity="0.03" />
+    </g>
+
+    <!-- Candles -->
+    <g transform="translate(140, 190)">
+      <rect x="-3" y="-30" width="6" height="30" rx="1" fill="#e8dcc8" opacity="0.7" />
+      <ellipse cx="0" cy="-30" rx="3" ry="1.5" fill="#c9a96e" opacity="0.3" />
+      <circle cx="0" cy="-33" r="1.5" fill="#d4a853" opacity="0.25" />
+      <circle cx="0" cy="-33" r="4" fill="#d4a853" opacity="0.04" />
+      {/* Wax drip */}
+      <path d="M-2 -25Q-4 -20 -2 -15" fill="none" stroke="#e8dcc8" stroke-width="1" opacity="0.5" />
+    </g>
+
+    <!-- Second candle -->
+    <g transform="translate(155, 193)">
+      <rect x="-2.5" y="-22" width="5" height="22" rx="1" fill="#c4b89a" opacity="0.6" />
+      <ellipse cx="0" cy="-22" rx="2.5" ry="1.2" fill="#c9a96e" opacity="0.25" />
+      <circle cx="0" cy="-24.5" r="1.2" fill="#d4a853" opacity="0.2" />
+    </g>
+
+    <!-- Spider (maybe) -->
+    {hasSpider && (
+      <g transform={`translate(${spiderX}, ${spiderY})`}>
+        <!-- Web strand -->
+        <line x1="0" y1="0" x2={-spiderX + 10} y2={-spiderY + 10} stroke="#e8dcc8" stroke-width="0.2" opacity="0.12" />
+        <!-- Body -->
+        <ellipse cx="0" cy="0" rx="3" ry="2" fill="#0d0a08" opacity="0.7" />
+        <ellipse cx="-2" cy="-1" rx="1.8" ry="1.3" fill="#1a1410" opacity="0.7" />
+        <!-- Legs -->
+        <path d="M-1 -1L-4 -4M-1 0L-5 1M0 1L-3 4M1 0L4 -3M1 0L5 2M0 1L3 5" stroke="#0d0a08" stroke-width="0.4" opacity="0.6" />
+      </g>
+    )}
+
+    <!-- Scattered small stones / crystals -->
+    <g opacity="0.2">
+      <circle cx="120" cy="210" r="2" fill="#c9a96e" />
+      <circle cx="135" cy="215" r="1.5" fill="#6b705c" />
+      <circle cx="115" cy="218" r="1" fill="#4a1520" />
+      <circle cx="200" cy="212" r="2.5" fill="#d4a853" />
+      <circle cx="210" cy="208" r="1.5" fill="#525745" />
+    </g>
+
+    {/* Small mortar & pestle */}
+    <g transform="translate(230, 200)" opacity="0.5">
+      <path d="M-8 5L8 5L5 -8L-5 -8Z" fill="#3d2b1a" stroke="#2a1f16" stroke-width="0.5" />
+      <ellipse cx="0" cy="5" rx="9" ry="3" fill="#2a1f16" stroke="#1a1410" stroke-width="0.5" />
+      <rect x="-1.5" y="-18" width="3" height="14" rx="1" fill="#5c4a2a" transform="rotate(-10, 0, 0)" />
+    </g>
+  </svg>
+</div>

@@ -1,0 +1,47 @@
+---
+// Alchemical Divider — SVG ornament between sections
+export interface Props {
+  variant?: 'line' | 'diamond' | 'orbital';
+  class?: string;
+}
+
+const { variant = 'line', class: extraClass = '' } = Astro.props;
+---
+
+{
+  variant === 'line' && (
+    <div class={`flex items-center justify-center gap-6 py-8 ${extraClass}`} aria-hidden="true">
+      <span class="h-px flex-1 bg-gradient-to-r from-transparent via-amber/30 to-transparent" />
+      <span class="block h-1 w-1 rounded-full bg-amber/50" />
+      <span class="block h-1.5 w-1.5 rounded-full bg-amber/40" />
+      <span class="block h-1 w-1 rounded-full bg-amber/50" />
+      <span class="h-px flex-1 bg-gradient-to-l from-transparent via-amber/30 to-transparent" />
+    </div>
+  )
+}
+
+{
+  variant === 'diamond' && (
+    <div class={`flex items-center justify-center py-10 ${extraClass}`} aria-hidden="true">
+      <div class="flex items-center gap-2">
+        <span class="h-px w-16 bg-gradient-to-r from-transparent to-amber/40" />
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="text-amber/50">
+          <path d="M8 0L16 8L8 16L0 8L8 0Z" fill="currentColor" opacity="0.3" />
+        </svg>
+        <span class="h-px w-16 bg-gradient-to-l from-transparent to-amber/40" />
+      </div>
+    </div>
+  )
+}
+
+{
+  variant === 'orbital' && (
+    <div class={`flex items-center justify-center py-10 ${extraClass}`} aria-hidden="true">
+      <svg width="80" height="24" viewBox="0 0 80 24" fill="none" class="text-amber/30">
+        <circle cx="40" cy="12" r="3" fill="currentColor" opacity="0.5" />
+        <circle cx="40" cy="12" r="8" stroke="currentColor" stroke-width="0.5" opacity="0.3" />
+        <circle cx="40" cy="12" r="13" stroke="currentColor" stroke-width="0.3" opacity="0.15" />
+      </svg>
+    </div>
+  )
+}

@@ -1,0 +1,53 @@
+---
+// AlchemicalScatter — scattered SVG symbols for visual cluttering
+// Sprinkles alchemical/mystical symbols around a section at random-looking positions
+export interface Props {
+  density?: 'sparse' | 'medium' | 'dense' | 'extra-dense';
+}
+
+const { density = 'medium' } = Astro.props;
+
+const symbols = [
+  // Circle / orb
+  '<circle cx="0" cy="0" r="3" fill="currentColor" opacity="0.15"/>',
+  // Diamond
+  '<path d="M0 -5L5 0L0 5L-5 0Z" fill="currentColor" opacity="0.1"/>',
+  // Small plus / cross
+  '<path d="M-3 0H3M0 -3V3" stroke="currentColor" stroke-width="0.5" opacity="0.12"/>',
+  // Dot cluster
+  '<circle cx="-3" cy="0" r="1.5" fill="currentColor" opacity="0.1"/><circle cx="3" cy="0" r="1" fill="currentColor" opacity="0.08"/><circle cx="0" cy="3" r="1.2" fill="currentColor" opacity="0.06"/>',
+  // Small triangle
+  '<path d="M0 -4L3.5 2.5H-3.5Z" fill="currentColor" opacity="0.08"/>',
+  // Arc / crescent
+  '<path d="M-4 0A4 4 0 0 1 4 0" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.1"/>',
+  // Four dots square
+  '<circle cx="-3" cy="-3" r="1" fill="currentColor" opacity="0.08"/><circle cx="3" cy="-3" r="1" fill="currentColor" opacity="0.08"/><circle cx="-3" cy="3" r="1" fill="currentColor" opacity="0.08"/><circle cx="3" cy="3" r="1" fill="currentColor" opacity="0.08"/>',
+  // Star burst
+  '<path d="M0 -6L0.7 -1.5L5 -1.2L1.2 1.2L2.5 5L0 2.5L-2.5 5L-1.2 1.2L-5 -1.2L-0.7 -1.5Z" fill="currentColor" opacity="0.06"/>',
+];
+
+const count = { sparse: 8, medium: 18, dense: 28, 'extra-dense': 42 }[density];
+const items: Array<{ top: string; left: string; scale: number; svg: string; rotate: number }> = [];
+for (let i = 0; i < count; i++) {
+  items.push({
+    top: `${Math.floor(Math.random() * 90) + 5}%`,
+    left: `${Math.floor(Math.random() * 90) + 5}%`,
+    scale: Math.round((Math.random() * 0.8 + 0.4) * 10) / 10,
+    svg: symbols[Math.floor(Math.random() * symbols.length)],
+    rotate: Math.floor(Math.random() * 360),
+  });
+}
+---
+
+<div class="pointer-events-none absolute inset-0 overflow-hidden text-amber" aria-hidden="true">
+  {items.map((item) => (
+    <svg
+      width="20"
+      height="20"
+      viewBox="-10 -10 20 20"
+      class="absolute"
+      style={`top: ${item.top}; left: ${item.left}; transform: scale(${item.scale}) rotate(${item.rotate}deg); opacity: 0.7;`}
+      set:html={item.svg}
+    />
+  ))}
+</div>

@@ -1,0 +1,27 @@
+---
+// ParchmentCard — textured container with optional tilt
+import TextureOverlay from './TextureOverlay.astro';
+
+export interface Props {
+  tilt?: 'left' | 'right' | 'none';
+  glow?: boolean;
+  class?: string;
+}
+
+const { tilt = 'none', glow = false, class: extraClass = '' } = Astro.props;
+
+const tiltClass = {
+  left: '-rotate-[0.5deg]',
+  right: 'rotate-[0.7deg]',
+  none: '',
+}[tilt];
+
+const glowClass = glow ? 'glow-ring' : '';
+---
+
+<div class={`relative overflow-hidden rounded-sm parchment ${tiltClass} ${glowClass} ${extraClass}`}>
+  <TextureOverlay opacity={0.08} zIndex={0} />
+  <div class="relative z-[2] p-6 sm:p-8 md:p-10">
+    <slot />
+  </div>
+</div>

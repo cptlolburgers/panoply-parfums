@@ -1,0 +1,44 @@
+---
+// GlowButton — warm amber hover button
+export interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  class: extraClass = '',
+} = Astro.props;
+
+const baseClasses = 'inline-flex items-center justify-center font-display tracking-wider uppercase transition-all duration-500 cursor-pointer border';
+
+const variantClasses = {
+  primary: 'border-amber/40 bg-amber/10 text-parchment hover:bg-amber/20 hover:border-amber/60 hover:shadow-[0_0_30px_4px_rgba(201,169,110,0.15)]',
+  secondary: 'border-parchment-dim/30 bg-transparent text-parchment-dim hover:text-parchment hover:border-parchment-dim/60 hover:bg-parchment-dim/5',
+  ghost: 'border-transparent bg-transparent text-parchment-dim hover:text-amber hover:bg-amber/5',
+}[variant];
+
+const sizeClasses = {
+  sm: 'px-4 py-2 text-xs gap-2',
+  md: 'px-6 py-3 text-sm gap-3',
+  lg: 'px-8 py-4 text-base gap-3',
+}[size];
+
+const classes = `${baseClasses} ${variantClasses} ${sizeClasses} ${extraClass}`;
+---
+
+{
+  href ? (
+    <a href={href} class={classes}>
+      <slot />
+    </a>
+  ) : (
+    <button class={classes}>
+      <slot />
+    </button>
+  )
+}

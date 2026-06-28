@@ -1,0 +1,80 @@
+---
+// HangingBotanicals — herbs, roots, and dried flowers hanging from above
+export interface Props {
+  seed?: number;
+  side?: 'left' | 'right';
+}
+
+const { seed = 1, side = 'left' } = Astro.props;
+
+function rng(s: number) {
+  let state = s;
+  return () => { state = (state * 16807 + 0) % 2147483647; return state / 2147483647; };
+}
+const rand = rng(seed);
+
+const bundles = 3 + Math.floor(rand() * 4);
+const items = [];
+for (let i = 0; i < bundles; i++) {
+  items.push({
+    x: 5 + rand() * 80,
+    length: 30 + rand() * 60,
+    angle: (rand() - 0.5) * 12,
+    type: rand() > 0.5 ? 'herb' : 'root',
+    leaves: 2 + Math.floor(rand() * 5),
+  });
+}
+
+const xOffset = side === 'right' ? 0 : 0;
+---
+
+<div
+  class={`pointer-events-none absolute top-0 h-40 w-56 opacity-[0.28] ${side === 'left' ? 'left-0' : 'right-0'}`}
+  aria-hidden="true"
+>
+  <svg viewBox="0 0 180 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-full">
+    {/* Hanging twine / cord */}
+    <path d="M20 0Q50 5 80 0Q110 4 140 0Q160 3 180 0" stroke="#8a7a5a" stroke-width="0.5" fill="none" opacity="0.4" />
+
+    {items.map((item, i) => (
+      <g key={i} transform={`translate(${item.x + xOffset}, 0) rotate(${item.angle})`}>
+        {/* Stem/cord */}
+        <line x1="0" y1="0" x2="0" y2={item.length} stroke="#5c4a2a" stroke-width="0.8" opacity="0.6" />
+
+        {/* Main body */}
+        {item.type === 'herb' ? (
+          <>
+            {/* Dried herb bundle */}
+            <path d={`M-4 ${item.length * 0.5}Q-6 ${item.length * 0.7} -3 ${item.length}Q0 ${item.length + 3} 3 ${item.length}Q6 ${item.length * 0.7} 4 ${item.length * 0.5}`}
+              fill="#6b705c" opacity="0.5" stroke="#525745" stroke-width="0.3" />
+            {/* Leaves */}
+            {Array.from({ length: item.leaves }).map((_, li) => (
+              <ellipse
+                key={li}
+                cx={(li % 2 === 0 ? -4 : 4)}
+                cy={item.length * 0.5 + li * 8}
+                rx="5" ry="2"
+                fill="#6b705c" opacity="0.35"
+                transform={`rotate(${(li % 2 === 0 ? 20 : -20)}, ${li % 2 === 0 ? -4 : 4}, ${item.length * 0.5 + li * 8})`}
+              />
+            ))}
+          </>
+        ) : (
+          <>
+            {/* Root / mandrake style */}
+            <path d={`M0 ${item.length * 0.3}Q-6 ${item.length * 0.5} -4 ${item.length * 0.7}Q-8 ${item.length * 0.85} -5 ${item.length}Q-2 ${item.length + 2} 0 ${item.length}Q3 ${item.length + 2} 5 ${item.length}Q8 ${item.length * 0.85} 4 ${item.length * 0.7}Q6 ${item.length * 0.5} 0 ${item.length * 0.3}`}
+              fill="#8a6d3b" opacity="0.45" stroke="#5c4a2a" stroke-width="0.3" />
+            {/* Root tendrils */}
+            <path d={`M-4 ${item.length * 0.7}Q-8 ${item.length * 0.8} -10 ${item.length * 0.9}`}
+              fill="none" stroke="#5c4a2a" stroke-width="0.5" opacity="0.4" />
+            <path d={`M4 ${item.length * 0.75}Q8 ${item.length * 0.85} 9 ${item.length * 0.95}`}
+              fill="none" stroke="#5c4a2a" stroke-width="0.5" opacity="0.4" />
+          </>
+        )}
+
+        {/* Tie at top */}
+        <ellipse cx="0" cy={item.length * 0.25} rx="3" ry="1.5" fill="none" stroke="#8a7a5a" stroke-width="0.4" opacity="0.4" />
+      </g>
+    ))}
+  </svg>
+</div>

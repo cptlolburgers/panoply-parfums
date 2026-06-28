@@ -1,0 +1,43 @@
+---
+import CascadeSection from 'src/components/shared/CascadeSection.astro';
+import ParchmentCard from 'src/components/shared/ParchmentCard.astro';
+import GlowButton from 'src/components/shared/GlowButton.astro';
+import AlchemicalDivider from 'src/components/shared/AlchemicalDivider.astro';
+import FlankingDecor from 'src/components/shared/FlankingDecor.astro';
+import CobwebCorner from 'src/components/shared/CobwebCorner.astro';
+import AlchemicalScatter from 'src/components/shared/AlchemicalScatter.astro';
+import GlasswareCollection from 'src/components/shared/GlasswareCollection.astro';
+---
+
+<CascadeSection rotate="left">
+  <div class="relative mx-auto max-w-2xl px-6">
+    <FlankingDecor />
+    <GlasswareCollection side="left" seed={4} />
+    <AlchemicalScatter density="sparse" />
+    <CobwebCorner position="bottom-right" />
+    <AlchemicalDivider variant="orbital" />
+
+    <ParchmentCard tilt="right" glow>
+      <div class="text-center">
+        <span class="font-display text-xs tracking-[0.2em] uppercase text-amber/50">Join the Coven</span>
+        <h2 class="mt-4 font-display text-3xl text-parchment">The Alchemist's<br/>Dispatches</h2>
+        <p class="mt-4 mx-auto max-w-md text-sm leading-relaxed text-parchment-dim">
+          New elixirs. Rare ingredient arrivals. Behind-the-phial alchemy.
+          Sent only when there's something worth saying.
+        </p>
+
+        <form action="https://api.web3forms.com/submit" method="POST" class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+          <input type="hidden" name="subject" value="Newsletter signup from Panoply Parfums" />
+          <input type="hidden" name="from_name" value="Panoply Parfums Coven" />
+          <input type="email" name="email" required placeholder="your@email.com" class="min-w-0 flex-1 rounded-sm border border-amber/20 bg-charcoal px-4 py-3 font-body text-sm text-parchment placeholder:text-parchment-dim/30 focus:border-amber/50 focus:outline-none" />
+          <GlowButton variant="primary" size="md">Subscribe</GlowButton>
+        </form>
+
+        <p class="mt-4 font-body text-xs text-parchment-dim/40">
+          Also on <a href="https://patreon.com/panoplyparfums" target="_blank" rel="noopener noreferrer" class="text-amber/50 underline underline-offset-2 transition-colors hover:text-amber">Patreon</a> — deeper grimoire entries, first access to new blends.
+        </p>
+      </div>
+    </ParchmentCard>
+  </div>
+</CascadeSection>

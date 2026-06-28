@@ -1,0 +1,31 @@
+---
+// CascadeSection — the core layout primitive for the eccentric cascade
+// Wraps sections with optional rotation, translation, and z-index offset
+export interface Props {
+  rotate?: 'left' | 'right' | 'none';
+  overlap?: 'up' | 'down' | 'none';
+  zIndex?: number;
+  class?: string;
+}
+
+const { rotate = 'none', overlap = 'none', zIndex = 0, class: extraClass = '' } = Astro.props;
+
+const rotateClass = {
+  left: 'sm:-rotate-1 md:-rotate-[1.5deg] sm:-translate-x-2 md:-translate-x-4',
+  right: 'sm:rotate-1 md:rotate-[1deg] sm:translate-x-2 md:translate-x-4',
+  none: '',
+}[rotate];
+
+const overlapClass = {
+  up: '-mt-8 sm:-mt-12 md:-mt-16',
+  down: '-mb-8 sm:-mb-12 md:-mb-16',
+  none: '',
+}[overlap];
+---
+
+<section
+  class={`relative ${rotateClass} ${overlapClass} ${extraClass}`}
+  style={zIndex ? `z-index: ${zIndex};` : ''}
+>
+  <slot />
+</section>

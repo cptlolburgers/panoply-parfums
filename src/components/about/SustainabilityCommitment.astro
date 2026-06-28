@@ -1,0 +1,52 @@
+---
+import CascadeSection from 'src/components/shared/CascadeSection.astro';
+import ParchmentCard from 'src/components/shared/ParchmentCard.astro';
+import TextureOverlay from 'src/components/shared/TextureOverlay.astro';
+import AlchemicalScatter from 'src/components/shared/AlchemicalScatter.astro';
+import FlankingDecor from 'src/components/shared/FlankingDecor.astro';
+import CobwebCorner from 'src/components/shared/CobwebCorner.astro';
+import LabFog from 'src/components/shared/LabFog.astro';
+import AlchemistCorner from 'src/components/shared/AlchemistCorner.astro';
+import BookshelfBackground from 'src/components/shared/BookshelfBackground.astro';
+
+const commitments = [
+  { title: 'Zero-Waste Extraction', body: 'We take only what is freely given. Oud from naturally infected trees. Ambergris gathered from the shore, never hunted. Deer musk from shed pods — the animals untouched, the earth unbroken.' },
+  { title: 'Alchemical Vessels', body: 'Every bottle wrapped by hand in recycled parchment and biodegradable material. No plastic sarcophagi, no foam that outlives the perfume itself. What arrives at your door returns to the earth.' },
+  { title: 'Coven Economy', body: 'We tithe above-market rates to every hand in our supply chain — Altai gatherers, oud-harvesting communities, flower farmers in Grasse and Kannauj. Your coin becomes their craft.' },
+  { title: 'Micro-Batch Doctrine', body: 'We will never swell to industrial scale. Small cauldrons, careful hands, each bottle a deliberate act of transmutation. When a blend exhausts itself, it is gone. New elixirs rise in its place.' },
+];
+
+const tilts = ['left', 'right', 'left', 'right'] as const;
+---
+
+<section class="relative py-20 sm:py-28">
+  <TextureOverlay opacity={0.07} />
+  <BookshelfBackground variant="full" opacity={0.08} seed={9} />
+  <LabFog />
+  <AlchemicalScatter density="medium" />
+  <FlankingDecor />
+  <AlchemistCorner position="bottom-right" seed={17} />
+  <CobwebCorner position="bottom-left" />
+
+  <div class="relative z-10 mx-auto max-w-5xl px-6">
+    <div class="mb-14 text-center">
+      <span class="font-display text-xs tracking-[0.2em] uppercase text-amber/60">The Oath</span>
+      <h2 class="mt-4 text-parchment">Stewardship, Not<br/>Marketing</h2>
+      <p class="mt-4 mx-auto max-w-xl text-sm leading-relaxed text-parchment-dim">
+        Without thriving ecosystems and honored communities, the prima materia vanishes —
+        and without ingredients, there is no art, no alchemy, no perfume.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      {commitments.map((c, i) => (
+        <CascadeSection rotate={i % 2 === 0 ? 'left' : 'right'}>
+          <ParchmentCard tilt={tilts[i]} class="h-full">
+            <h3 class="font-display text-lg text-parchment">{c.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-parchment-dim">{c.body}</p>
+          </ParchmentCard>
+        </CascadeSection>
+      ))}
+    </div>
+  </div>
+</section>

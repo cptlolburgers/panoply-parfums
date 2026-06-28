@@ -1,0 +1,82 @@
+[
+  {
+    "id": "nocturne",
+    "name": "Nocturne",
+    "subtitle": "The Dark Hours",
+    "category": "oriental-woody",
+    "description": "For the hours between midnight and dawn. Deer musk and aged oud folded into night-blooming jasmine, with a whisper of smoked vanilla. Wears close — like a secret against the skin.",
+    "notes": {
+      "top": ["bergamot", "black pepper"],
+      "heart": ["jasmine grandiflorum", "deer musk", "oud"],
+      "base": ["ambergris", "smoked vanilla", "sandalwood"]
+    },
+    "vibe": "Intimate, nocturnal, magnetic",
+    "bestFor": "Evening, close encounters, speaking without words",
+    "image": "/images/fragrances/nocturne.jpg",
+    "featured": true
+  },
+  {
+    "id": "hierophant",
+    "name": "Hierophant",
+    "subtitle": "Bearer of Mysteries",
+    "category": "spicy-aromatic",
+    "description": "Incense-laden and ritualistic. Frankincense and myrrh meet saffron and aged leather. Ancient — like stepping into a candlelit sanctuary where ceremonies have burned for millennia.",
+    "notes": {
+      "top": ["saffron", "clary sage"],
+      "heart": ["frankincense", "myrrh", "bulgarian rose"],
+      "base": ["aged leather", "ambergris", "cedar"]
+    },
+    "vibe": "Ceremonial, contemplative, commanding",
+    "bestFor": "Ritual, deep work, moments demanding gravity",
+    "image": "/images/fragrances/hierophant.jpg",
+    "featured": true
+  },
+  {
+    "id": "veridian",
+    "name": "Veridian",
+    "subtitle": "The Green Hour",
+    "category": "green-floral",
+    "description": "Crushed stems and dew-soaked petals. Galbanum and violet leaf open into iris butter and white florals, grounded by moss and earth. A garden just after rainfall.",
+    "notes": {
+      "top": ["galbanum", "violet leaf", "bergamot"],
+      "heart": ["iris butter", "lily-of-the-valley", "mimosa"],
+      "base": ["oakmoss", "white musk", "vetiver"]
+    },
+    "vibe": "Fresh, contemplative, verdant",
+    "bestFor": "Day elegance, spring stirrings, ordinary poetry",
+    "image": "/images/fragrances/veridian.jpg",
+    "featured": true
+  },
+  {
+    "id": "salt-cedar",
+    "name": "Salt & Cedar",
+    "subtitle": "Driftwood & Memory",
+    "category": "woody-marine",
+    "description": "Where forest meets sea. Salt-crusted cedar and driftwood ambergris, brightened by yuzu, anchored by Haitian vetiver. Clean but never sterile — alive with mineral depth.",
+    "notes": {
+      "top": ["yuzu", "sea salt", "pink pepper"],
+      "heart": ["cedarwood", "ambergris", "cypress"],
+      "base": ["vetiver", "white amber", "moss"]
+    },
+    "vibe": "Elemental, expansive, grounding",
+    "bestFor": "Day-to-night, coastal wandering, feeling infinite",
+    "image": "/images/fragrances/salt-cedar.jpg",
+    "featured": false
+  },
+  {
+    "id": "golden-oud",
+    "name": "Golden Oud",
+    "subtitle": "The Gilded Path",
+    "category": "oud-gourmand",
+    "description": "Our magnum opus. Twenty-year-aged Cambodian oud threaded with saffron, honeyed dates, edible gold. Sweet, animalic, utterly intoxicating.",
+    "notes": {
+      "top": ["saffron", "dates", "cinnamon bark"],
+      "heart": ["aged cambodian oud", "turkish rose absolute"],
+      "base": ["deer musk", "benzoin", "golden amber"]
+    },
+    "vibe": "Opulent, hedonistic, unforgettable",
+    "bestFor": "When you mean to be remembered. Galas. Entrances.",
+    "image": "/images/fragrances/golden-oud.jpg",
+    "featured": true
+  }
+]

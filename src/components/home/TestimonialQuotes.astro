@@ -1,0 +1,49 @@
+---
+import CascadeSection from 'src/components/shared/CascadeSection.astro';
+import ParchmentCard from 'src/components/shared/ParchmentCard.astro';
+import LetterAvatar from 'src/components/shared/LetterAvatar.astro';
+import TextureOverlay from 'src/components/shared/TextureOverlay.astro';
+import AlchemicalScatter from 'src/components/shared/AlchemicalScatter.astro';
+import FlankingDecor from 'src/components/shared/FlankingDecor.astro';
+import CobwebCorner from 'src/components/shared/CobwebCorner.astro';
+import HangingBotanicals from 'src/components/shared/HangingBotanicals.astro';
+import BookshelfBackground from 'src/components/shared/BookshelfBackground.astro';
+
+const testimonials = [
+  { initial: 'M', quote: "I've never worn anything like Nocturne. It feels like it was made for my skin, not just sprayed on it. Varun's consultation was uncanny — he knew what I needed before I did.", name: 'Marcus L.' },
+  { initial: 'E', quote: "The sourcing transparency is what drew me in. Knowing where the oud came from — the specific trees, the community that harvested it — makes wearing Golden Oud feel like participating in something sacred.", name: 'Elena V.' },
+  { initial: 'S', quote: "I ordered from Tokyo. The consultation form was thoughtful, and Varun's recommendations arrived in my inbox like a personal letter. Hierophant is now my signature. Worth every moment of the wait.", name: 'Satoshi K.' },
+];
+
+const tilts = ['left', 'right', 'left'] as const;
+---
+
+<section class="relative py-20 sm:py-28">
+  <TextureOverlay opacity={0.07} />
+  <BookshelfBackground variant="full" opacity={0.08} seed={3} />
+  <AlchemicalScatter density="dense" />
+  <FlankingDecor />
+  <HangingBotanicals side="right" seed={7} />
+  <CobwebCorner position="top-right" />
+
+  <div class="relative z-10 mx-auto max-w-6xl px-6">
+    <div class="mb-14 text-center">
+      <span class="font-display text-xs tracking-[0.2em] uppercase text-amber/60">Testimonials</span>
+      <h2 class="mt-4 text-parchment">Words from the Coven</h2>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-3">
+      {testimonials.map((t, i) => (
+        <CascadeSection rotate={i % 2 === 0 ? 'left' : 'right'}>
+          <ParchmentCard tilt={tilts[i]} class="h-full">
+            <div class="flex flex-col gap-5 h-full">
+              <LetterAvatar letter={t.initial} />
+              <p class="text-sm leading-relaxed text-parchment-dim italic flex-grow">"{t.quote}"</p>
+              <p class="font-display text-xs tracking-wider text-amber/60">— {t.name}</p>
+            </div>
+          </ParchmentCard>
+        </CascadeSection>
+      ))}
+    </div>
+  </div>
+</section>

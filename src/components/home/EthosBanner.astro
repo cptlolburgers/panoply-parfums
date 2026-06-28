@@ -1,0 +1,29 @@
+---
+import CascadeSection from 'src/components/shared/CascadeSection.astro';
+import ParchmentCard from 'src/components/shared/ParchmentCard.astro';
+import CobwebCorner from 'src/components/shared/CobwebCorner.astro';
+import AlchemicalScatter from 'src/components/shared/AlchemicalScatter.astro';
+import GlasswareCollection from 'src/components/shared/GlasswareCollection.astro';
+---
+
+<CascadeSection rotate="right" overlap="up">
+  <div class="relative mx-auto max-w-3xl px-6">
+    <GlasswareCollection side="right" seed={1} />
+    <AlchemicalScatter density="sparse" />
+    <CobwebCorner position="bottom-left" />
+    <ParchmentCard tilt="left" glow>
+      <div class="text-center">
+        <span class="font-display text-xs tracking-[0.2em] uppercase text-amber/50">The Creed</span>
+        <blockquote class="mt-6">
+          <p class="font-display text-2xl leading-relaxed text-parchment italic sm:text-3xl">
+            "The world does not need more perfume.
+            It needs perfume made with <span class="text-amber">intention</span> —
+            each ingredient gathered as if it were the last of its kind,
+            each elixir composed as if it were the only one."
+          </p>
+        </blockquote>
+        <p class="mt-6 font-body text-sm text-parchment-dim/50">— Panoply Parfums, anno 2024</p>
+      </div>
+    </ParchmentCard>
+  </div>
+</CascadeSection>

@@ -1,0 +1,41 @@
+---
+import CascadeSection from 'src/components/shared/CascadeSection.astro';
+import GlowButton from 'src/components/shared/GlowButton.astro';
+import TextureOverlay from 'src/components/shared/TextureOverlay.astro';
+import CobwebCorner from 'src/components/shared/CobwebCorner.astro';
+---
+
+<CascadeSection rotate="right" overlap="up">
+  <div class="mx-auto max-w-4xl px-6">
+    <div class="relative overflow-hidden rounded-sm border border-amber/20 bg-gradient-to-br from-ember to-charcoal p-10 text-center sm:p-16 md:p-20">
+      <TextureOverlay opacity={0.10} />
+      <CobwebCorner position="top-left" />
+
+      <div class="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full bg-amber/4 blur-[80px]" aria-hidden="true" />
+      <div class="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-burgundy/3 blur-[70px]" aria-hidden="true" />
+
+      <div class="relative z-10">
+        <span class="font-display text-xs tracking-[0.2em] uppercase text-amber/60">Send a Raven</span>
+        <h2 class="mt-4 font-display text-3xl text-parchment sm:text-4xl">
+          Find Your Elixir
+        </h2>
+        <p class="mt-5 mx-auto max-w-xl text-base leading-relaxed text-parchment-dim">
+          Tell me your humors. Your occasions. Your curiosities.
+          I shall compose a personalized recommendation — drawn to the animalic depths
+          of deer musk, the smoky transcendence of oud, or the ethereal shimmer of ambergris.
+          No obligation. One nose to another.
+        </p>
+
+        <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <GlowButton href="/consultation/" variant="primary" size="lg">
+            Seek Your Scent
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="ml-1">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </GlowButton>
+          <span class="text-xs text-parchment-dim/40">Complimentary · No Obligation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</CascadeSection>

@@ -1,0 +1,45 @@
+---
+// CobwebCorner — SVG cobweb in section corners, "forgotten library" atmosphere
+export interface Props {
+  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+}
+
+const { position = 'top-left' } = Astro.props;
+
+const positionClasses = {
+  'top-left': 'top-0 left-0',
+  'top-right': 'top-0 right-0 scale-x-[-1]',
+  'bottom-left': 'bottom-0 left-0 scale-y-[-1]',
+  'bottom-right': 'bottom-0 right-0 scale-[-1]',
+}[position];
+---
+
+<div
+  class={`pointer-events-none absolute ${positionClasses} h-36 w-44 sm:h-52 sm:w-60`}
+  aria-hidden="true"
+>
+  <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-full">
+    <!-- Anchor strands from corner -->
+    <path d="M0 0 L30 80" stroke="#e8dcc8" stroke-width="0.5" opacity="0.16" />
+    <path d="M0 0 L70 70" stroke="#e8dcc8" stroke-width="0.4" opacity="0.13" />
+    <path d="M0 0 L90 35" stroke="#e8dcc8" stroke-width="0.35" opacity="0.14" />
+    <path d="M0 0 L50 100" stroke="#e8dcc8" stroke-width="0.5" opacity="0.11" />
+    <path d="M0 0 L110 15" stroke="#e8dcc8" stroke-width="0.35" opacity="0.12" />
+
+    <!-- Cross strands -->
+    <path d="M0 30 Q20 25 45 35" stroke="#e8dcc8" stroke-width="0.35" fill="none" opacity="0.14" />
+    <path d="M0 55 Q15 50 30 58" stroke="#e8dcc8" stroke-width="0.3" fill="none" opacity="0.11" />
+    <path d="M15 0 Q20 15 18 35" stroke="#e8dcc8" stroke-width="0.3" fill="none" opacity="0.13" />
+    <path d="M35 0 Q38 10 33 25" stroke="#e8dcc8" stroke-width="0.3" fill="none" opacity="0.12" />
+    <path d="M55 0 Q52 8 50 20" stroke="#e8dcc8" stroke-width="0.25" fill="none" opacity="0.10" />
+
+    <!-- Orbital cross strands -->
+    <path d="M0 42 Q25 30 55 48" stroke="#e8dcc8" stroke-width="0.3" fill="none" opacity="0.12" />
+    <path d="M22 0 Q28 18 20 42" stroke="#e8dcc8" stroke-width="0.25" fill="none" opacity="0.10" />
+
+    <!-- Tiny web nodes -->
+    <circle cx="30" cy="35" r="0.7" fill="#e8dcc8" opacity="0.15" />
+    <circle cx="45" cy="48" r="0.6" fill="#e8dcc8" opacity="0.12" />
+    <circle cx="18" cy="25" r="0.5" fill="#e8dcc8" opacity="0.13" />
+  </svg>
+</div>

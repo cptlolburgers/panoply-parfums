@@ -1,0 +1,47 @@
+---
+// FlankingDecor — illuminated manuscript-style vertical side borders
+// Fills empty horizontal space with subtle ornamental lines and dots
+export interface Props {
+  height?: 'full' | 'content';
+}
+
+const { height = 'full' } = Astro.props;
+---
+
+<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+  <!-- Left flank -->
+  <div class="absolute left-8 top-0 bottom-0 flex w-12 flex-col items-center gap-6 py-20 opacity-[0.22] sm:left-12 md:left-16">
+    <!-- Top ornament -->
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="text-amber">
+      <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="0.5" />
+      <circle cx="6" cy="6" r="1.5" fill="currentColor" />
+    </svg>
+    <!-- Vertical line -->
+    <div class="h-full w-px bg-gradient-to-b from-amber via-amber/30 to-transparent" />
+    <!-- Middle dots -->
+    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" class="text-amber -my-3">
+      <circle cx="4" cy="4" r="2" fill="currentColor" />
+    </svg>
+    <!-- Bottom ornament -->
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" class="text-amber">
+      <path d="M0 5L5 0L10 5L5 10Z" stroke="currentColor" stroke-width="0.5" />
+      <circle cx="5" cy="5" r="1" fill="currentColor" />
+    </svg>
+  </div>
+
+  <!-- Right flank -->
+  <div class="absolute right-8 top-0 bottom-0 flex w-12 flex-col items-center gap-6 py-20 opacity-[0.22] sm:right-12 md:right-16">
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" class="text-amber">
+      <path d="M0 5L5 0L10 5L5 10Z" stroke="currentColor" stroke-width="0.5" />
+      <circle cx="5" cy="5" r="1" fill="currentColor" />
+    </svg>
+    <div class="h-full w-px bg-gradient-to-b from-amber via-amber/30 to-transparent" />
+    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" class="text-amber -my-3">
+      <circle cx="4" cy="4" r="2" fill="currentColor" />
+    </svg>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="text-amber">
+      <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="0.5" />
+      <circle cx="6" cy="6" r="1.5" fill="currentColor" />
+    </svg>
+  </div>
+</div>
