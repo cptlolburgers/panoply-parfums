@@ -37,7 +37,7 @@ const xOffset = side === 'right' ? 0 : 0;
     <path d="M20 0Q50 5 80 0Q110 4 140 0Q160 3 180 0" stroke="#8a7a5a" stroke-width="0.5" fill="none" opacity="0.4" />
 
     {items.map((item, i) => (
-      <g key={i} transform={`translate(${item.x + xOffset}, 0) rotate(${item.angle})`}>
+      <g transform={`translate(${item.x + xOffset}, 0) rotate(${item.angle})`}>
         {/* Stem/cord */}
         <line x1="0" y1="0" x2="0" y2={item.length} stroke="#5c4a2a" stroke-width="0.8" opacity="0.6" />
 
@@ -50,7 +50,6 @@ const xOffset = side === 'right' ? 0 : 0;
             {/* Leaves */}
             {Array.from({ length: item.leaves }).map((_, li) => (
               <ellipse
-                key={li}
                 cx={(li % 2 === 0 ? -4 : 4)}
                 cy={item.length * 0.5 + li * 8}
                 rx="5" ry="2"

@@ -51,7 +51,7 @@ for (let i = 0; i < count; i++) {
     <line x1="15" y1="582" x2="185" y2="582" stroke="#0d0a08" stroke-width="1.5" opacity="0.2" />
 
     {pieces.map((p, i) => (
-      <g key={i} transform={`translate(${p.x + 20}, ${580 - p.y}) scale(${p.scale})`}>
+      <g transform={`translate(${p.x + 20}, ${580 - p.y}) scale(${p.scale})`}>
         {p.type === 'beaker' && (
           <>
             <path d="M-12 0L-10 -45L-7 -50H7L10 -45L12 0Z" fill="none" stroke={pick(glassColors)} stroke-width="1.5" />
