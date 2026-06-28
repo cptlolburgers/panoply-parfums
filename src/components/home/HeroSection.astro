@@ -22,7 +22,6 @@ import BookshelfBackground from 'src/components/shared/BookshelfBackground.astro
   <div class="pointer-events-none absolute inset-0" aria-hidden="true">
     <div class="absolute left-1/2 top-1/3 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber/3 blur-[120px]" />
     <div class="absolute bottom-1/4 right-1/3 h-64 w-64 rounded-full bg-burgundy/3 blur-[100px]" />
-    <div class="absolute left-1/4 top-2/3 h-48 w-48 rounded-full bg-sage/3 blur-[80px]" />
   </div>
 
   <div class="relative z-10 max-w-4xl">
@@ -33,30 +32,15 @@ import BookshelfBackground from 'src/components/shared/BookshelfBackground.astro
       </span>
       <span class="font-display text-xs tracking-[0.15em] uppercase text-amber/80">New Elixir Brewing</span>
     </div>
-
-    <h1 class="mb-6 leading-[1.05]">
-      <span class="block text-parchment">Alchemy in</span>
-      <span class="bg-gradient-to-r from-amber via-amber-glow to-parchment bg-clip-text text-transparent">Every Bottle</span>
-    </h1>
-
-    <p class="mx-auto mb-10 max-w-2xl font-body text-lg leading-relaxed text-parchment-dim">
-      Panoply Parfums — singular fragrances from the world's most arcane ingredients. Ethically gathered deer musk.
-      Wild-harvested oud. Ocean-gifted ambergris. Hand-plucked delicate florals. No two phials alike. No spirit unadorned.
-    </p>
-
+    <h1 class="mb-6 leading-[1.05]"><span class="block text-parchment">Alchemy in</span><span class="bg-gradient-to-r from-amber via-amber-glow to-parchment bg-clip-text text-transparent">Every Bottle</span></h1>
+    <p class="mx-auto mb-10 max-w-2xl font-body text-lg leading-relaxed text-parchment-dim">Panoply Parfums — singular fragrances from the world's most arcane ingredients. Ethically gathered deer musk. Wild-harvested oud. Ocean-gifted ambergris. Hand-plucked delicate florals. No two phials alike. No spirit unadorned.</p>
     <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-      <GlowButton href="/consultation/" variant="primary" size="lg">
-        Seek Your Scent
-      </GlowButton>
-      <GlowButton href="/about/" variant="ghost" size="md">
-        Study the Grimoire
-      </GlowButton>
+      <GlowButton href="/consultation/" variant="primary" size="lg">Seek Your Scent</GlowButton>
+      <GlowButton href="/about/" variant="ghost" size="md">Study the Grimoire</GlowButton>
     </div>
   </div>
 
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float" aria-hidden="true">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-parchment-dim/40">
-      <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-parchment-dim/40"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" /></svg>
   </div>
 </section>

@@ -1,5 +1,4 @@
 ---
-import CascadeSection from 'src/components/shared/CascadeSection.astro';
 import ParchmentCard from 'src/components/shared/ParchmentCard.astro';
 import LetterAvatar from 'src/components/shared/LetterAvatar.astro';
 import TextureOverlay from 'src/components/shared/TextureOverlay.astro';
@@ -14,8 +13,6 @@ const testimonials = [
   { initial: 'E', quote: "The sourcing transparency is what drew me in. Knowing where the oud came from — the specific trees, the community that harvested it — makes wearing Golden Oud feel like participating in something sacred.", name: 'Elena V.' },
   { initial: 'S', quote: "I ordered from Tokyo. The consultation form was thoughtful, and Varun's recommendations arrived in my inbox like a personal letter. Hierophant is now my signature. Worth every moment of the wait.", name: 'Satoshi K.' },
 ];
-
-const tilts = ['left', 'right', 'left'] as const;
 ---
 
 <section class="relative py-20 sm:py-28">
@@ -25,24 +22,13 @@ const tilts = ['left', 'right', 'left'] as const;
   <FlankingDecor />
   <HangingBotanicals side="right" seed={7} />
   <CobwebCorner position="top-right" />
-
   <div class="relative z-10 mx-auto max-w-6xl px-6">
-    <div class="mb-14 text-center">
-      <span class="font-display text-xs tracking-[0.2em] uppercase text-amber/60">Testimonials</span>
-      <h2 class="mt-4 text-parchment">Words from the Coven</h2>
-    </div>
-
+    <div class="mb-14 text-center"><span class="font-display text-xs tracking-[0.2em] uppercase text-amber/60">Testimonials</span><h2 class="mt-4 text-parchment">Words from the Coven</h2></div>
     <div class="grid gap-8 md:grid-cols-3">
       {testimonials.map((t, i) => (
-        <CascadeSection rotate={i % 2 === 0 ? 'left' : 'right'}>
-          <ParchmentCard tilt={tilts[i]} class="h-full">
-            <div class="flex flex-col gap-5 h-full">
-              <LetterAvatar letter={t.initial} />
-              <p class="text-sm leading-relaxed text-parchment-dim italic flex-grow">"{t.quote}"</p>
-              <p class="font-display text-xs tracking-wider text-amber/60">— {t.name}</p>
-            </div>
-          </ParchmentCard>
-        </CascadeSection>
+        <ParchmentCard tilt={i % 2 === 0 ? 'left' : 'right'} class="h-full">
+          <div class="flex flex-col gap-5 h-full"><LetterAvatar letter={t.initial} /><p class="text-sm leading-relaxed text-parchment-dim italic flex-grow">"{t.quote}"</p><p class="font-display text-xs tracking-wider text-amber/60">— {t.name}</p></div>
+        </ParchmentCard>
       ))}
     </div>
   </div>

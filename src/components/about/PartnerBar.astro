@@ -1,39 +1,22 @@
 ---
-import CascadeSection from 'src/components/shared/CascadeSection.astro';
 import AlchemicalDivider from 'src/components/shared/AlchemicalDivider.astro';
 import FlankingDecor from 'src/components/shared/FlankingDecor.astro';
 import CobwebCorner from 'src/components/shared/CobwebCorner.astro';
 import HangingBotanicals from 'src/components/shared/HangingBotanicals.astro';
 
-const partners = [
-  { name: 'Fragrantica', url: '#' },
-  { name: 'Parfumo', url: '#' },
-  { name: 'The Institute for Art & Olfaction', url: '#' },
-  { name: 'Basenotes', url: '#' },
-];
+const partners = [{ name: 'Fragrantica', url: '#' },{ name: 'Parfumo', url: '#' },{ name: 'The Institute for Art & Olfaction', url: '#' },{ name: 'Basenotes', url: '#' }];
 ---
 
-<CascadeSection rotate="left">
+<section>
   <div class="relative mx-auto max-w-4xl px-6 py-12">
     <FlankingDecor />
     <HangingBotanicals side="right" seed={21} />
     <CobwebCorner position="top-right" />
     <AlchemicalDivider variant="orbital" />
-
-    <div class="text-center">
-      <span class="font-display text-xs tracking-[0.2em] uppercase text-amber/50">Recognized By</span>
-    </div>
-
+    <div class="text-center"><span class="font-display text-xs tracking-[0.2em] uppercase text-amber/50">Recognized By</span></div>
     <div class="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
-      {partners.map(partner => (
-        <a href={partner.url} class="flex items-center justify-center rounded-sm border border-amber/10 bg-ember/40 px-6 py-5 transition-all duration-300 hover:border-amber/30 hover:bg-ember">
-          <span class="font-display text-sm tracking-[0.1em] text-parchment-dim/50">{partner.name}</span>
-        </a>
-      ))}
+      {partners.map(partner => (<a href={partner.url} class="flex items-center justify-center rounded-sm border border-amber/10 bg-ember/40 px-6 py-5 transition-all duration-300 hover:border-amber/30 hover:bg-ember"><span class="font-display text-sm tracking-[0.1em] text-parchment-dim/50">{partner.name}</span></a>))}
     </div>
-
-    <p class="mt-6 text-center font-body text-xs text-parchment-dim/30 italic">
-      Placeholder — replace with actual partner logos and links.
-    </p>
+    <p class="mt-6 text-center font-body text-xs text-parchment-dim/30 italic">Placeholder — replace with actual partner logos and links.</p>
   </div>
-</CascadeSection>
+</section>

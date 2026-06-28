@@ -32,11 +32,9 @@ function generateShelfBooks(seed: number, count: number) {
 }
 
 const s = seed;
-const shelf1 = generateShelfBooks(s + 1, 16 + (s % 4));
-const shelf2 = generateShelfBooks(s + 2, 14 + ((s * 2) % 5));
-const shelf3 = generateShelfBooks(s + 3, 15 + ((s * 3) % 4));
-const shelf4 = generateShelfBooks(s + 4, 13 + ((s * 5) % 5));
-const shelf5 = generateShelfBooks(s + 5, 14 + ((s * 7) % 4));
+const shelf1 = generateShelfBooks(s + 1, 12 + (s % 4));
+const shelf2 = generateShelfBooks(s + 2, 11 + ((s * 2) % 4));
+const shelf3 = generateShelfBooks(s + 3, 12 + ((s * 3) % 3));
 ---
 
 <div
@@ -132,79 +130,12 @@ const shelf5 = generateShelfBooks(s + 5, 14 + ((s * 7) % 4));
       )
     ))}
 
-    <!-- Shelf 4 -->
-    <use href="#shelfPlank" y="590" />
-    {shelf4.map((b) => (
-      b.isBottle ? (
-        <g transform={`translate(${b.x + 60}, 590) rotate(${b.tilt})`}>
-          <rect x={-b.w/2} y={-b.h-4} width={b.w + 4} height={b.h} rx="4" fill="url(#bottleGrad)" stroke="#c9a96e" stroke-width="0.5" opacity="0.7" />
-          <ellipse cx="0" cy={-b.h + 2} rx={b.w/2 + 1} ry="3" fill="#2a1f16" opacity="0.65" />
-        </g>
-      ) : (
-        <g transform={`translate(${b.x + 60}, 590) rotate(${b.tilt})`}>
-          <rect x={-b.w/2} y={-b.h-4} width={b.w} height={b.h} fill={b.color} stroke="#0d0a08" stroke-width="0.5" opacity="0.85" rx="1" />
-          {b.spineDetail && (
-            <line x1={-b.w/2 + 3} y1={-b.h + 7} x2={b.w/2 - 3} y2={-b.h + 7} stroke="#0d0a08" stroke-width="0.5" opacity="0.4" />
-          )}
-        </g>
-      )
-    ))}
-
-    <!-- Shelf 5 -->
-    <use href="#shelfPlank" y="730" />
-    {shelf5.map((b) => (
-      b.isBottle ? (
-        <g transform={`translate(${b.x + 40}, 730) rotate(${b.tilt})`}>
-          <rect x={-b.w/2} y={-b.h-4} width={b.w} height={b.h} rx="2" fill="url(#bottleGrad)" stroke="#c9a96e" stroke-width="0.5" opacity="0.8" />
-        </g>
-      ) : (
-        <g transform={`translate(${b.x + 40}, 730) rotate(${b.tilt})`}>
-          <rect x={-b.w/2} y={-b.h-4} width={b.w} height={b.h} fill={b.color} stroke="#0d0a08" stroke-width="0.5" opacity="0.9" rx="1" />
-          {b.spineDetail && (
-            <rect x={-b.w/2 + 2} y={-b.h/2 - 3} width={b.w - 4} height="6" fill="#0d0a08" opacity="0.3" rx="1" />
-          )}
-        </g>
-      )
-    ))}
-
     <!-- Scattered items -->
-    <!-- Scroll on shelf 2 -->
-    <g transform="translate(870, 304) rotate(-5)" opacity="0.8">
-      <ellipse cx="0" cy="0" rx="5" ry="3" fill="#e8dcc8" />
-      <rect x="-5" y="0" width="10" height="15" fill="#e8dcc8" opacity="0.9" />
-      <ellipse cx="0" cy="15" rx="5" ry="3" fill="#c4b89a" />
-    </g>
-
-    <!-- Stacked books on shelf 3 -->
-    <g transform="translate(750, 444)" opacity="0.8">
-      <rect x="-15" y="-4" width="30" height="5" fill="#4a1520" rx="0.5" />
-      <rect x="-12" y="-9" width="24" height="5" fill="#6b705c" rx="0.5" />
-      <rect x="-14" y="-14" width="28" height="5" fill="#c9a96e" rx="0.5" />
-    </g>
-
-    <!-- Small vial on shelf 4 -->
-    <g transform="translate(920, 585)" opacity="0.7">
-      <rect x="-3" y="-18" width="6" height="18" rx="2" fill="url(#bottleGrad)" stroke="#c9a96e" stroke-width="0.5" />
-      <rect x="-2" y="-18" width="4" height="3" rx="1" fill="#2a1f16" opacity="0.85" />
-    </g>
-
     <!-- Loose scroll on shelf 1 -->
     <g transform="translate(700, 174) rotate(8)" opacity="0.75">
       <ellipse cx="0" cy="0" rx="4" ry="2.5" fill="#e8dcc8" />
       <rect x="-4" y="0" width="8" height="20" fill="#e8dcc8" opacity="0.85" />
       <ellipse cx="0" cy="20" rx="4" ry="2.5" fill="#c4b89a" />
-    </g>
-
-    <!-- Candle on shelf 3 -->
-    <g transform="translate(180, 444)" opacity="0.6">
-      <rect x="-4" y="-25" width="8" height="25" fill="#e8dcc8" rx="1" />
-      <ellipse cx="0" cy="-25" rx="3" ry="1.5" fill="#c9a96e" opacity="0.6" />
-      <circle cx="0" cy="-27" r="2" fill="#d4a853" opacity="0.5" />
-    </g>
-
-    <!-- Tilted book leaning -->
-    <g transform="translate(480, 586)" opacity="0.8">
-      <rect x="-6" y="-50" width="12" height="50" fill="#732a30" stroke="#0d0a08" stroke-width="0.5" rx="1" transform="rotate(15, 0, 0)" />
     </g>
 
     <!-- Apothecary jar on shelf 2 -->
@@ -213,9 +144,27 @@ const shelf5 = generateShelfBooks(s + 5, 14 + ((s * 7) % 4));
       <rect x="-4" y="-15" width="8" height="4" rx="1.5" fill="#2a1f16" opacity="0.75" stroke="#c9a96e" stroke-width="0.3" />
     </g>
 
-    <!-- Cobweb hints across shelves -->
+    <!-- Scroll on shelf 2 -->
+    <g transform="translate(870, 304) rotate(-5)" opacity="0.8">
+      <ellipse cx="0" cy="0" rx="5" ry="3" fill="#e8dcc8" />
+      <rect x="-5" y="0" width="10" height="15" fill="#e8dcc8" opacity="0.9" />
+      <ellipse cx="0" cy="15" rx="5" ry="3" fill="#c4b89a" />
+    </g>
+
+    <!-- Candle + stacked books on shelf 3 -->
+    <g transform="translate(180, 444)" opacity="0.6">
+      <rect x="-4" y="-25" width="8" height="25" fill="#e8dcc8" rx="1" />
+      <ellipse cx="0" cy="-25" rx="3" ry="1.5" fill="#c9a96e" opacity="0.6" />
+      <circle cx="0" cy="-27" r="2" fill="#d4a853" opacity="0.5" />
+    </g>
+    <g transform="translate(750, 444)" opacity="0.8">
+      <rect x="-15" y="-4" width="30" height="5" fill="#4a1520" rx="0.5" />
+      <rect x="-12" y="-9" width="24" height="5" fill="#6b705c" rx="0.5" />
+      <rect x="-14" y="-14" width="28" height="5" fill="#c9a96e" rx="0.5" />
+    </g>
+
+    <!-- Cobweb hints -->
     <path d="M0 180 Q150 175 300 182" stroke="#e8dcc8" stroke-width="0.5" fill="none" opacity="0.15" />
     <path d="M400 310 Q550 305 700 312" stroke="#e8dcc8" stroke-width="0.5" fill="none" opacity="0.13" />
-    <path d="M600 450 Q750 447 900 453" stroke="#e8dcc8" stroke-width="0.4" fill="none" opacity="0.12" />
   </svg>
 </div>

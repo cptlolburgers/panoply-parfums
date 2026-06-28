@@ -1,5 +1,4 @@
 ---
-import CascadeSection from 'src/components/shared/CascadeSection.astro';
 import AlchemicalDivider from 'src/components/shared/AlchemicalDivider.astro';
 import FlankingDecor from 'src/components/shared/FlankingDecor.astro';
 import CobwebCorner from 'src/components/shared/CobwebCorner.astro';
@@ -7,14 +6,14 @@ import AlchemicalScatter from 'src/components/shared/AlchemicalScatter.astro';
 import HangingBotanicals from 'src/components/shared/HangingBotanicals.astro';
 
 const badges = [
-  { label: 'Sustainably Sourced', icon: '🌿' },
-  { label: 'Artisan Blended', icon: '⚗️' },
-  { label: 'Ethically Harvested', icon: '🤲' },
-  { label: 'Small Batch', icon: '📜' },
+  { label: 'Sustainably Sourced', icon: '🌿', tilt: '-rotate-[2.5deg]' },
+  { label: 'Artisan Blended', icon: '⚗️', tilt: 'rotate-[1.5deg]' },
+  { label: 'Ethically Harvested', icon: '🤲', tilt: '-rotate-[1deg]' },
+  { label: 'Small Batch', icon: '📜', tilt: 'rotate-[3deg]' },
 ];
 ---
 
-<CascadeSection rotate="left">
+<section>
   <div class="relative flex min-h-[40vh] flex-col items-center justify-center px-6">
     <FlankingDecor />
     <HangingBotanicals side="left" seed={3} />
@@ -23,11 +22,11 @@ const badges = [
     <AlchemicalDivider variant="orbital" />
     <div class="grid w-full max-w-5xl grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4">
       {badges.map(badge => (
-        <div class="flex flex-col items-center gap-3 rounded-sm border border-amber/10 bg-ember/50 px-4 py-8 text-center transition-all duration-500 hover:border-amber/30 hover:bg-ember">
+        <div class={`flex flex-col items-center gap-3 rounded-sm border border-amber/10 bg-ember/50 px-4 py-8 text-center transition-all duration-500 hover:border-amber/30 hover:bg-ember ${badge.tilt}`}>
           <span class="text-2xl" aria-hidden="true">{badge.icon}</span>
           <span class="font-display text-xs tracking-[0.12em] uppercase text-parchment-dim">{badge.label}</span>
         </div>
       ))}
     </div>
   </div>
-</CascadeSection>
+</section>

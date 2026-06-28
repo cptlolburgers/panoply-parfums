@@ -10,10 +10,10 @@ import HangingBotanicals from 'src/components/shared/HangingBotanicals.astro';
 
 const steps = [
   { number: 'I', title: 'The Scrying', description: 'Every elixir begins with listening. What stirs you? What memories rise at the scent of rain on stone, of oud smoke in a sanctuary, of jasmine at the witching hour? We divine before we distill.' },
-  { number: 'II', title: 'Gathering the Prima Materia', description: 'Each lot of oud, each shipment of musk, each distillation of rose is judged alone — because nature abhors uniformity, and so do we. Only materials that meet our exacting standards pass the threshold.' },
-  { number: 'III', title: 'The Conjunction', description: 'Blending is not arithmetic — it is conversation. The perfumer works in 50ml cauldrons, adjusting by the drop, guided by instinct and material memory. A single formula may undergo thirty transmutations before it stills.' },
-  { number: 'IV', title: 'The Long Rest', description: 'Like a potion left to mature in the dark, our blends slumber for six weeks minimum — often much longer — allowing the volatile humors to marry into a harmonious whole that wears as a second skin.' },
-  { number: 'V', title: 'The Sealing & Sending', description: 'Each bottle filled by hand. Labeled by hand. Wrapped by hand. Before it leaves, the perfumer passes his nose over every batch — not a sample, <span class="italic">every</span> batch — because someone across an ocean waits.' },
+  { number: 'II', title: 'Gathering the Prima Materia', description: 'Each lot of oud, each shipment of musk, each distillation of rose is judged alone — because nature abhors uniformity, and so do we.' },
+  { number: 'III', title: 'The Conjunction', description: 'Blending is not arithmetic — it is conversation. The perfumer works in 50ml cauldrons, adjusting by the drop, guided by instinct and material memory.' },
+  { number: 'IV', title: 'The Long Rest', description: 'Like a potion left to mature in the dark, our blends slumber for six weeks minimum — allowing the volatile humors to marry into a harmonious whole.' },
+  { number: 'V', title: 'The Sealing & Sending', description: 'Each bottle filled by hand. Labeled by hand. Wrapped by hand. Before it leaves, the perfumer passes his nose over <span class="italic">every</span> batch — because someone across an ocean waits.' },
 ];
 
 const tilts = ['left', 'right', 'left', 'right', 'left'] as const;
@@ -26,28 +26,15 @@ const tilts = ['left', 'right', 'left', 'right', 'left'] as const;
   <HangingBotanicals side="left" seed={13} />
   <CobwebCorner position="top-right" />
   <div class="relative z-10 mx-auto max-w-5xl px-6">
-    <div class="mb-14 text-center">
-      <span class="font-display text-xs tracking-[0.2em] uppercase text-amber/60">The Art</span>
-      <h2 class="mt-4 text-parchment">Five Stages of<br/>Transmutation</h2>
-      <p class="mt-4 mx-auto max-w-xl text-sm leading-relaxed text-parchment-dim">
-        From first scrying to final seal — the alchemist's path from raw matter to liquid soul.
-      </p>
-    </div>
-
+    <div class="mb-14 text-center"><span class="font-display text-xs tracking-[0.2em] uppercase text-amber/60">The Art</span><h2 class="mt-4 text-parchment">Five Stages of<br/>Transmutation</h2><p class="mt-4 mx-auto max-w-xl text-sm leading-relaxed text-parchment-dim">From first scrying to final seal — the alchemist's path from raw matter to liquid soul.</p></div>
     <AlchemicalDivider variant="diamond" />
-
     <div class="space-y-6">
       {steps.map((step, i) => (
         <CascadeSection rotate={i % 2 === 0 ? 'left' : 'right'}>
           <ParchmentCard tilt={tilts[i]}>
             <div class="flex flex-col gap-4 sm:flex-row sm:gap-8 sm:items-start">
-              <div class="shrink-0">
-                <span class="font-display text-4xl text-amber/30 sm:text-5xl">{step.number}</span>
-              </div>
-              <div>
-                <h3 class="font-display text-xl text-parchment">{step.title}</h3>
-                <p class="mt-2 text-sm leading-relaxed text-parchment-dim" set:html={step.description} />
-              </div>
+              <div class="shrink-0"><span class="font-display text-4xl text-amber/30 sm:text-5xl">{step.number}</span></div>
+              <div><h3 class="font-display text-xl text-parchment">{step.title}</h3><p class="mt-2 text-sm leading-relaxed text-parchment-dim" set:html={step.description} /></div>
             </div>
           </ParchmentCard>
         </CascadeSection>

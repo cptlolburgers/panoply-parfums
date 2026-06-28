@@ -13,7 +13,7 @@ const layers = [
 <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
   {layers.map((layer) => (
     <div
-      class="absolute animate-[drift_20s_ease-in-out_infinite]"
+      class="absolute"
       style={{
         top: layer.top,
         left: layer.left,
@@ -28,11 +28,3 @@ const layers = [
   ))}
 </div>
 
-<style is:global>
-  @keyframes drift {
-    0%, 100% { transform: translateX(0) translateY(0); }
-    25% { transform: translateX(3%) translateY(-2%); }
-    50% { transform: translateX(-2%) translateY(3%); }
-    75% { transform: translateX(-4%) translateY(-1%); }
-  }
-</style>

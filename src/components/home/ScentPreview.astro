@@ -22,68 +22,22 @@ const tilts = ['left', 'right', 'left', 'right'] as const;
   <AlchemistCorner position="bottom-left" seed={3} />
   <CobwebCorner position="bottom-left" />
   <div class="relative z-10 mx-auto max-w-6xl px-6">
-    <div class="mb-14 text-center">
-      <span class="font-display text-xs tracking-[0.2em] uppercase text-amber/60">Rare Ingredients, Ethically Gathered</span>
-      <h2 class="mt-4 text-parchment">The Elixirs</h2>
-    </div>
-
+    <div class="mb-14 text-center"><span class="font-display text-xs tracking-[0.2em] uppercase text-amber/60">Rare Ingredients, Ethically Gathered</span><h2 class="mt-4 text-parchment">The Elixirs</h2></div>
     <AlchemicalDivider variant="line" />
-
-    <!-- Horizontal scroll with arrows -->
     <div class="relative group">
-      <!-- Left arrow -->
-      <button id="scroll-left" aria-label="Scroll left" class="absolute left-0 top-1/2 z-20 -translate-y-1/2 -translate-x-4 hidden sm:flex h-10 w-10 items-center justify-center rounded-full border border-amber/20 bg-charcoal/90 text-amber/60 transition-all hover:border-amber/50 hover:text-amber hover:bg-charcoal backdrop-blur-sm opacity-0 group-hover:opacity-100">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-
-      <!-- Right arrow -->
-      <button id="scroll-right" aria-label="Scroll right" class="absolute right-0 top-1/2 z-20 -translate-y-1/2 translate-x-4 hidden sm:flex h-10 w-10 items-center justify-center rounded-full border border-amber/20 bg-charcoal/90 text-amber/60 transition-all hover:border-amber/50 hover:text-amber hover:bg-charcoal backdrop-blur-sm opacity-0 group-hover:opacity-100">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-
-      <!-- Scroll container -->
+      <button id="scroll-left" aria-label="Scroll left" class="absolute left-0 top-1/2 z-20 -translate-y-1/2 -translate-x-4 hidden sm:flex h-10 w-10 items-center justify-center rounded-full border border-amber/20 bg-charcoal/90 text-amber/60 transition-all hover:border-amber/50 hover:text-amber hover:bg-charcoal backdrop-blur-sm opacity-0 group-hover:opacity-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button id="scroll-right" aria-label="Scroll right" class="absolute right-0 top-1/2 z-20 -translate-y-1/2 translate-x-4 hidden sm:flex h-10 w-10 items-center justify-center rounded-full border border-amber/20 bg-charcoal/90 text-amber/60 transition-all hover:border-amber/50 hover:text-amber hover:bg-charcoal backdrop-blur-sm opacity-0 group-hover:opacity-100"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div id="elixir-scroll" class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 scrollbar-hide">
         {featured.map((fragrance, i) => (
           <div class="snap-start shrink-0 w-[85vw] max-w-[380px]">
             <ParchmentCard tilt={tilts[i]} class="h-full">
               <div class="flex flex-col gap-4 h-full">
-                <div class="flex items-start justify-between">
-                  <div>
-                    <h3 class="font-display text-2xl text-parchment">{fragrance.name}</h3>
-                    <p class="font-body text-sm italic text-amber/60">{fragrance.subtitle}</p>
-                  </div>
-                  <span class="rounded-full border border-amber/10 px-3 py-1 font-body text-[10px] tracking-wider text-parchment-dim/50 uppercase">
-                    {fragrance.category}
-                  </span>
-                </div>
-
+                <div class="flex items-start justify-between"><div><h3 class="font-display text-2xl text-parchment">{fragrance.name}</h3><p class="font-body text-sm italic text-amber/60">{fragrance.subtitle}</p></div><span class="rounded-full border border-amber/10 px-3 py-1 font-body text-[10px] tracking-wider text-parchment-dim/50 uppercase">{fragrance.category}</span></div>
                 <p class="text-sm leading-relaxed text-parchment-dim flex-grow">{fragrance.description}</p>
-
                 <div class="space-y-3 border-t border-amber/10 pt-4">
-                  {(['top', 'heart', 'base'] as const).map(layer => (
-                    <div class="flex items-start gap-3">
-                      <span class="mt-0.5 shrink-0 font-body text-[10px] tracking-widest uppercase text-amber/40 w-10 text-right">
-                        {layer}
-                      </span>
-                      <div class="flex flex-wrap gap-1">
-                        {fragrance.notes[layer].map(note => (
-                          <span class="rounded-sm bg-amber/5 px-2 py-0.5 font-body text-xs text-parchment-dim/70">
-                            {note}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
+                  {(['top', 'heart', 'base'] as const).map(layer => (<div class="flex items-start gap-3"><span class="mt-0.5 shrink-0 font-body text-[10px] tracking-widest uppercase text-amber/40 w-10 text-right">{layer}</span><div class="flex flex-wrap gap-1">{fragrance.notes[layer].map(note => (<span class="rounded-sm bg-amber/5 px-2 py-0.5 font-body text-xs text-parchment-dim/70">{note}</span>))}</div></div>))}
                 </div>
-
-                <div class="flex flex-col gap-2 border-t border-amber/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
-                  <div>
-                    <p class="font-body text-xs text-parchment-dim/50"><span class="text-amber/40">Best for: </span>{fragrance.bestFor}</p>
-                  </div>
-                  <GlowButton href="/consultation/" variant="ghost" size="sm">
-                    Inquire →
-                  </GlowButton>
-                </div>
+                <div class="flex flex-col gap-2 border-t border-amber/10 pt-4 sm:flex-row sm:items-center sm:justify-between"><p class="font-body text-xs text-parchment-dim/50"><span class="text-amber/40">Best for: </span>{fragrance.bestFor}</p><GlowButton href="/consultation/" variant="ghost" size="sm">Inquire →</GlowButton></div>
               </div>
             </ParchmentCard>
           </div>
@@ -93,18 +47,5 @@ const tilts = ['left', 'right', 'left', 'right'] as const;
   </div>
 </section>
 
-<style>
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
-  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-</style>
-
-<script>
-  const scroll = document.getElementById('elixir-scroll');
-  const leftBtn = document.getElementById('scroll-left');
-  const rightBtn = document.getElementById('scroll-right');
-  if (scroll && leftBtn && rightBtn) {
-    const cardWidth = 380 + 24; // card max-width + gap
-    leftBtn.addEventListener('click', () => scroll.scrollBy({ left: -cardWidth, behavior: 'smooth' }));
-    rightBtn.addEventListener('click', () => scroll.scrollBy({ left: cardWidth, behavior: 'smooth' }));
-  }
-</script>
+<style>.scrollbar-hide::-webkit-scrollbar{display:none}.scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none}</style>
+<script>const s=document.getElementById('elixir-scroll'),l=document.getElementById('scroll-left'),r=document.getElementById('scroll-right');if(s&&l&&r){const w=380+24;l.addEventListener('click',()=>s.scrollBy({left:-w,behavior:'smooth'}));r.addEventListener('click',()=>s.scrollBy({left:w,behavior:'smooth'}));}</script>
